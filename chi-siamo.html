@@ -46,11 +46,8 @@
       top: 0;
       z-index: 1000;
     }
-    nav .logo { color: var(--white); font-weight: 700; font-size: 1.25rem; }
-    nav .menu {
-      display: flex;
-      gap:1.5rem;
-    }
+    nav .logo { color: var(--white); font-weight: 700; font-size: 1.5rem; cursor: pointer; }
+    nav .menu { display: flex; gap:1.5rem; }
     nav a {
       color: var(--white);
       text-decoration:none;
@@ -77,8 +74,8 @@
     }
     /* HERO */
     .hero {
-      background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      min-height:50vh;
+      background: url('https://images.unsplash.com/photo-1594087659309-1abbf02b96c8?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      min-height:60vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -86,37 +83,58 @@
       position:relative;
       color: var(--white);
     }
-    .hero::before { content:'';position:absolute;inset:0;background:rgba(0,0,0,0.5); }
+    .hero::before { content:'';position:absolute;inset:0;background:rgba(0,0,0,0.6); }
     .hero-content { position:relative;z-index:1;max-width:700px;margin:0 1rem; }
-    .hero-content h2 { font-size:2.5rem;margin-bottom:1rem;letter-spacing:2px; }
-    .hero-content p { font-size:1.2rem; }
+    .hero-content h2 { font-size:2.75rem;margin-bottom:1rem;letter-spacing:2px; }
+    .hero-content p { font-size:1.2rem; max-width:600px; margin:auto; }
     /* SEZIONI */
     .section { padding:4rem 1rem; text-align:center; }
     .section h3 { font-size:2rem;margin-bottom:1rem;color:var(--black); }
-    .features { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:2rem; margin-top:2rem; }
+    .section p { max-width:800px; margin: 0 auto; font-size:1.1rem; }
+    .features { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:2rem; margin-top:2rem; }
     .feature-card { background: var(--white); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow); transition:transform var(--transition),box-shadow var(--transition); }
-    .feature-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-    .feature-card i { font-size:2rem;color:var(--gold);margin-bottom:1rem; }
-    .feature-card h4 { margin-bottom:0.5rem;font-size:1.25rem;font-weight:600; }
+    .feature-card:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.25); }
+    .feature-card i { font-size:2.5rem;color:var(--gold);margin-bottom:1rem; }
+    .feature-card h4 { margin-bottom:0.5rem;font-size:1.3rem;font-weight:600; }
     .feature-card p { font-size:1rem; }
-    footer { background: var(--black); color:var(--white); text-align:center; padding:1.5rem 1rem; margin-top:3rem; }
+    /* CTA */
+    .cta {
+      background: var(--gold);
+      color: var(--black);
+      text-align:center;
+      padding:2rem 1rem;
+      margin:2rem 0;
+    }
+    .cta a {
+      display:inline-block;
+      background: var(--black);
+      color: var(--gold);
+      padding:0.75rem 1.5rem;
+      border-radius:var(--radius);
+      text-decoration:none;
+      font-weight:700;
+      transition: background var(--transition), color var(--transition);
+    }
+    .cta a:hover { background: var(--dark-gray2); color: var(--white); }
+    /* FOOTER */
+    footer { background: var(--black); color:var(--white); text-align:center; padding:1.5rem 1rem; }
     /* RESPONSIVE */
     @media(max-width:768px) {
       .hamburger { display:block; }
       nav .menu { display:none; flex-direction:column; gap:1rem; background:var(--dark-gray2); position:absolute; top:100%; left:0; width:100%; padding:1rem 2rem; }
       nav .menu.open { display:flex; }
-      nav { padding:1rem; }
+      .hero-content h2 { font-size:2.25rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Chi Siamo</h1>
-    <p>Il nostro servizio mobile di acquisto oro direttamente da te</p>
+    <p>Il primo servizio mobile di acquisto oro: veniamo noi da te!</p>
   </header>
 
   <nav>
-    <div class="logo">COF</div>
+    <div class="logo" onclick="location.href='index.html'">COF</div>
     <div class="hamburger"><i class="fas fa-bars"></i></div>
     <div class="menu">
       <a href="index.html">Home</a>
@@ -131,13 +149,13 @@
   <section class="hero">
     <div class="hero-content">
       <h2>Siamo dove sei tu</h2>
-      <p>Su appuntamento veniamo direttamente da te con equipaggiamento professionale.</p>
+      <p>Su appuntamento veniamo direttamente da te con kit professionale per valutare e comprare il tuo oro in totale sicurezza.</p>
     </div>
   </section>
 
   <section class="section">
     <h3>La nostra missione</h3>
-    <p>Offrire un’esperienza sicura, rapida e trasparente: nessuna sede fissa, massima comodità.</p>
+    <p>Portare convenienza e trasparenza direttamente a domicilio, eliminando spostamenti e attese. Un servizio personalizzato, rapido e sicuro.</p>
   </section>
 
   <section class="section">
@@ -145,26 +163,31 @@
     <div class="features">
       <div class="feature-card">
         <i class="fas fa-calendar-alt"></i>
-        <h4>Appuntamento Online</h4>
-        <p>Prenota in pochi click l’orario più comodo per te.</p>
+        <h4>1. Prenota</h4>
+        <p>Scegli data e fascia oraria tramite il form online o telefonicamente.</p>
       </div>
       <div class="feature-card">
         <i class="fas fa-truck-loading"></i>
-        <h4>Servizio Mobile</h4>
-        <p>Ci spostiamo con kit certificato per la valutazione direttamente a casa tua.</p>
+        <h4>2. Arriviamo da te</h4>
+        <p>Il nostro team si sposta nella tua sede con bilance e strumenti certificati.</p>
       </div>
       <div class="feature-card">
-        <i class="fas fa-shield-alt"></i>
-        <h4>Sicurezza</h4>
-        <p>Valutazioni trasparenti e pagamenti istantanei, con documenti ufficiali.</p>
+        <i class="fas fa-hand-holding-usd"></i>
+        <h4>3. Valutiamo</h4>
+        <p>Valutazione immediata e trasparente con emissione di documenti.</p>
       </div>
       <div class="feature-card">
-        <i class="fas fa-tools"></i>
-        <h4>Equipaggiamento</h4>
-        <p>Utilizziamo bilance di precisione e strumenti professionali per ogni tipo di oro.</p>
+        <i class="fas fa-coins"></i>
+        <h4>4. Paghiamo</h4>
+        <p>Pagamento istantaneo in contanti o bonifico, come preferisci.</p>
       </div>
     </div>
   </section>
+
+  <div class="cta">
+    <h3>Prenota il tuo appuntamento ora</h3>
+    <a href="contatti.html">Richiedi un appuntamento</a>
+  </div>
 
   <footer>&copy; 2025 Compro Oro Frascati</footer>
 
