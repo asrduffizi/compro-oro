@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Compro Oro Frascati</title>
   <!-- Google Fonts e FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
   <style>
     :root {
-      --primary: #bfa063;
-      --dark: #1a1a1a;
-      --dark-2: #2a2a2a;
-      --light: #fafafa;
-      --text: #333333;
+      --primary: #FFD700;     /* oro brillante */
+      --dark: #000000;        /* nero puro */
+      --dark-2: #333333;      /* grigio scuro */
+      --light: #FFFFFF;       /* bianco brillante */
+      --text: #222222;        /* testo principale scuro */
       --transition: 0.3s;
-      --radius: 8px;
-      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 10px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', 'Montserrat', sans-serif;
       background: var(--light);
       color: var(--text);
       line-height: 1.6;
@@ -33,9 +33,10 @@
       padding: 2rem 1rem;
     }
     header .logo {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
     /* NAVBAR */
     nav {
@@ -43,44 +44,52 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 2rem;
+      padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    nav .menu { display: flex; gap: 1.5rem; }
+    nav .menu { display: flex; gap: 2rem; }
     nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
+      color: var(--light);
+      font-weight: 500;
       position: relative;
-      padding: 0.25rem 0;
+      padding: 0.5rem;
       transition: color var(--transition);
     }
     nav a::after {
       content: '';
       position: absolute;
-      left: 0; bottom: -4px;
-      width: 0; height: 2px;
+      left: 0; bottom: -5px;
+      width: 0; height: 3px;
       background: var(--primary);
       transition: width var(--transition);
     }
-    nav a:hover { color: var(--primary); }
-    nav a:hover::after { width: 100%; }
-    .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; }
+    nav a:hover {
+      color: var(--primary);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.75rem;
+      color: var(--light);
+      cursor: pointer;
+    }
     /* HERO PARALLAX */
     .hero {
-      background: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1400&q=80') center/cover fixed no-repeat;
-      padding: 6rem 2rem;
+      background: url('https://images.unsplash.com/photo-1566541240942-8f5f8161b8b2?auto=format&fit=crop&w=1400&q=80') center/cover fixed no-repeat;
+      padding: 7rem 2rem;
       text-align: center;
-      color: #ffffff;
+      color: var(--light);
       position: relative;
     }
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.5);
     }
     .hero-content {
       position: relative;
@@ -89,15 +98,19 @@
       margin: 0 auto;
     }
     .hero h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
-      letter-spacing: 1px;
+      letter-spacing: 3px;
     }
-    .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
     .hero .btn {
       background: var(--primary);
       color: var(--dark);
-      padding: 0.75rem 2rem;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
       font-weight: 700;
       border: none;
       border-radius: var(--radius);
@@ -107,64 +120,75 @@
       display: inline-block;
     }
     .hero .btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
       box-shadow: var(--shadow);
     }
     /* SEZIONI */
     .section { padding: 4rem 2rem; text-align: center; }
-    .section h2 { margin-bottom: 1.5rem; font-size: 2rem; color: var(--dark); }
+    .section h2 {
+      margin-bottom: 2rem;
+      font-size: 2.25rem;
+      color: var(--dark);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 2.5rem;
     }
     .feature-card {
-      background: #ffffff;
-      padding: 2rem;
+      background: var(--light);
+      padding: 2.5rem;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       transition: transform var(--transition), box-shadow var(--transition);
     }
     .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
     .feature-card i {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
       color: var(--primary);
       margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
     }
     /* TESTIMONIALS */
     .testimonials { background: var(--light); }
     .testimonial {
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      padding: 1rem;
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+      padding: 1.5rem;
       font-style: italic;
       position: relative;
-      border-left: 4px solid var(--primary);
-      background: #ffffff;
+      border-left: 5px solid var(--primary);
+      background: var(--light);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
     .testimonial::before {
       content: '“';
-      font-size: 3rem;
+      font-size: 3.5rem;
       position: absolute;
-      top: -10px; left: -10px;
+      top: -15px; left: -15px;
       color: var(--primary);
     }
     /* FOOTER */
     footer {
       background: var(--dark-2);
-      color: #ffffff;
+      color: var(--light);
       text-align: center;
       padding: 2rem 1rem;
     }
     .socials a {
-      color: #ffffff;
-      margin: 0 0.5rem;
-      font-size: 1.25rem;
+      color: var(--light);
+      margin: 0 0.75rem;
+      font-size: 1.5rem;
       transition: color var(--transition);
     }
     .socials a:hover { color: var(--primary); }
@@ -172,19 +196,20 @@
       .hamburger { display: block; }
       nav .menu { display: none; flex-direction: column; gap:1rem; background: var(--dark-2); position: absolute; top:100%; left:0; width:100%; padding:1rem 2rem; }
       nav .menu.open { display: flex; }
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero p { font-size: 1.25rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">Oro Rapido Frascati</div>
+    <div class="logo">Compro Oro Frascati</div>
     <p>Valutazioni Immediate, Pagamenti Immediati</p>
   </header>
 
   <nav>
-    <div class="logo" style="color:white; font-size:1.25rem;">COF</div>
+    <div class="logo" style="color:var(--light); font-size:1.25rem; font-weight:700;">COF</div>
     <div class="hamburger"><i class="fas fa-bars"></i></div>
     <div class="menu">
       <a href="index.html">Home</a>
@@ -198,7 +223,7 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Benvenuto su Oro Rapido Frascati</h1>
+      <h1>Benvenuto su Compro Oro Frascati</h1>
       <p>Scopri come vendere il tuo oro in modo sicuro, veloce e vantaggioso. Ti guidiamo passo dopo passo.</p>
       <a href="stima.html" class="btn">Calcola la tua stima</a>
     </div>
@@ -223,5 +248,34 @@
         <p>Processo chiaro e prezzi sempre aggiornati.</p>
       </div>
       <div class="feature-card">
-        <i class
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>In Centro</h3>
+        <p>Comodo punto vendita a Frascati.</p>
+      </div>
+    </div>
+  </section>
 
+  <section class="section testimonials" id="testimonianze">
+    <h2>Cosa dicono i clienti</h2>
+    <div class="testimonial">Servizio eccezionale e prezzo imbattibile! – <strong>Maria R.</strong></div>
+    <div class="testimonial">Personale professionale e molto gentile. – <strong>Luca F.</strong></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Compro Oro Frascati</p>
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    const ham = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+    ham.addEventListener('click', () => menu.classList.toggle('open'));
+  </script>
+
+</body>
+</html>
