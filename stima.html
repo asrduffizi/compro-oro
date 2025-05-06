@@ -4,20 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stima Oro - Compro Oro Frascati</title>
-  <!-- Google Fonts e FontAwesome -->
+  <!-- Google Fonts eFontAwesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Header e Navbar comuni -->
+  <!-- header/nav -->
   <header>
     <h1>Compro Oro Frascati</h1>
     <p>Valutazioni Immediate, Pagamenti Immediati</p>
   </header>
 
   <nav>
-    <div class="logo">COF</nobr></div>
+    <div class="logo">COF</div>
     <div class="hamburger"><i class="fas fa-bars"></i></div>
     <div class="menu">
       <a href="index.html">Home</a>
@@ -29,12 +31,18 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Hero con immagine oro -->
+  <section class="hero" style="background-image:url('assets/gold-bg.jpg'); background-size:cover;">
     <div class="hero-content">
       <h2>Stima Gratuita del Tuo Oro</h2>
       <p>Inserisci carati e peso per avere un range di valore istantaneo.</p>
     </div>
+  </section>
+
+  <!-- Grafico prezzo live oro -->
+  <section class="section">
+    <h3>Prezzo Oro Live (XAU/EUR)</h3>
+    <canvas id="goldChart" height="200"></canvas>
   </section>
 
   <!-- Form di Stima -->
@@ -59,18 +67,60 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>&copy; 2025 Compro Oro Frascati</footer>
 
-  <!-- Script per mobile menu e calcolo -->
   <script>
     // Toggle mobile menu
     const ham = document.querySelector('.hamburger');
     const menu = document.querySelector('.menu');
     ham.addEventListener('click', () => menu.classList.toggle('open'));
 
+    // Inizializza Chart.js
+    const ctx = document.getElementById('goldChart').getContext('2d');
+    const goldChart = new Chart(ctx, {
+      type: 'line',
+      data: { labels: [], datasets: [{
+        label: 'Prezzo Oro (€/g)',
+        data: [],
+        borderColor: '#FFD700',
+        backgroundColor: 'rgba(255,215,0,0.2)',
+        tension: 0.4
+      }]},
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'Ora' } },
+          y: { title: { display: true, text: 'Prezzo (€/g)' } }
+        },
+        responsive: true,
+        plugins: { legend: { display: false }}
+      }
+    });
+
+    // Fetch prezzo oro live e aggiorna grafico
+    async function fetchGoldPrice() {
+      try {
+        const res = await fetch('https://api.exchangerate.host/latest?base=XAU&symbols=EUR');
+        const json = await res.json();
+        const pricePerOunce = json.rates.EUR;
+        const pricePerGram = pricePerOunce / 31.1035;
+        const time = new Date().toLocaleTimeString();
+        goldChart.data.labels.push(time);
+        goldChart.data.datasets[0].data.push(pricePerGram.toFixed(2));
+        if (goldChart.data.labels.length > 10) {
+          goldChart.data.labels.shift();
+          goldChart.data.datasets[0].data.shift();
+        }
+        goldChart.update();
+      } catch (err) {
+        console.error('Errore fetching gold price', err);
+      }
+    }
+    // Esegui subito e ogni minuto
+    fetchGoldPrice();
+    setInterval(fetchGoldPrice, 60000);
+
     // Calcolo stima con range ±5%
-    const prezzi = {24:60, 22:55, 18:45, 14:35};
+    const prezzi = { 24: 60, 22: 55, 18: 45, 14: 35 };
     document.getElementById('stima-form').addEventListener('submit', e => {
       e.preventDefault();
       const c = +document.getElementById('carati').value;
@@ -79,7 +129,7 @@
       const base = prezzi[c] * p;
       const min = (base * 0.95).toFixed(2);
       const max = (base * 1.05).toFixed(2);
-      document.getElementById('risultato').innerHTML = 
+      document.getElementById('risultato').innerHTML =
         `<span>Valore stimato: <strong>€${min}</strong> – <strong>€${max}</strong></span>`;
     });
   </script>
