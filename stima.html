@@ -1,19 +1,56 @@
-<form id="stima-form">
-  <select id="carati">
-    <option>24K</option>
-    <option>22K</option>
-    <option>18K</option>
-  </select>
-  <input type="number" id="peso" placeholder="Peso in grammi">
-  <button type="submit">Stima</button>
-  <div id="risultato"></div>
-</form>
-<script>
-  const prezzi = {24:60,22:55,18:45};
-  document.getElementById('stima-form').onsubmit = e => {
-    e.preventDefault();
-    let c=document.getElementById('carati').value;
-    let p=parseFloat(document.getElementById('peso').value);
-    document.getElementById('risultato').innerHTML='€'+(prezzi[c]*p).toFixed(2);
-  };
-</script>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stima Oro - COF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <!-- header+nav identici a index.html -->
+
+  <section class="section hero">
+    <div class="hero-content">
+      <h2>Stima Gratuita del Tuo Oro</h2>
+      <p>Inserisci carati e peso per avere un range di valore istantaneo.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="form-card">
+      <form id="stima-form">
+        <label for="carati">Caratura (K)</label>
+        <select id="carati" required>
+          <option value="">-- scegli --</option>
+          <option value="24">24K</option>
+          <option value="22">22K</option>
+          <option value="18">18K</option>
+          <option value="14">14K</option>
+        </select>
+
+        <label for="peso">Peso (g)</label>
+        <input type="number" id="peso" step="0.01" min="0.01" placeholder="es. 10.50" required>
+
+        <button type="submit">Calcola Stima</button>
+        <div class="result" id="risultato"></div>
+      </form>
+    </div>
+  </main>
+
+  <footer>&copy; 2025 Compro Oro Frascati</footer>
+
+  <script>
+    const prezzi = {24:60,22:55,18:45,14:35};
+    document.getElementById('stima-form').addEventListener('submit', e=>{
+      e.preventDefault();
+      const c = +document.getElementById('carati').value;
+      const p = parseFloat(document.getElementById('peso').value);
+      const base = prezzi[c]*p;
+      const min = (base*0.95).toFixed(2), max = (base*1.05).toFixed(2);
+      document.getElementById('risultato').innerText =
+        `Valore stimato: €${min} – €${max}`;
+    });
+  </script>
+</body>
+</html>
