@@ -2,127 +2,269 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Compro Oro Frascati</title>
+  <!-- Font e icone -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
   <style>
+    :root {
+      --gold: #d4af37;
+      --dark: #111;
+      --dark-2: #222;
+      --light: #f4f4f4;
+      --text: #333;
+      --transition: 0.3s;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
+      background: var(--light);
+      color: var(--text);
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
-
     header {
-      background-color: #111;
-      color: gold;
-      padding: 2rem 1rem;
+      background: var(--dark);
+      color: var(--gold);
       text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
     }
-
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    /* NAVBAR */
     nav {
-      background: #222;
+      background: var(--dark-2);
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 2rem;
       position: sticky;
       top: 0;
-      z-index: 999;
+      z-index: 1000;
     }
-
+    nav .menu {
+      display: flex;
+      gap: 1.5rem;
+    }
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      padding: 0.5rem;
-      transition: color 0.3s, transform 0.2s;
+      font-weight: 600;
+      position: relative;
+      transition: color var(--transition);
     }
-
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
     nav a:hover {
-      color: gold;
+      color: var(--gold);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+    }
+    /* HERO PARALLAX */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1615393109582-b2f4c6a7cdcd?auto=format&fit=crop&w=1400&q=80') center/cover fixed no-repeat;
+      padding: 6rem 2rem;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .hero .btn {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform var(--transition);
+      text-decoration: none;
+    }
+    .hero .btn:hover {
       transform: scale(1.05);
     }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1615393109582-b2f4c6a7cdcd?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    /* SEZIONI */
+    .section {
       padding: 4rem 2rem;
       text-align: center;
-      color: white;
     }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 1px 1px 5px black;
+    .section h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: var(--dark);
     }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-      text-shadow: 1px 1px 3px black;
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 2rem;
     }
-
-    main {
+    .feature-card {
+      background: white;
       padding: 2rem;
-      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform var(--transition);
     }
-
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-card i {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    /* TESTIMONIALS */
+    .testimonials {
+      background: var(--light);
+    }
+    .testimonial {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-style: italic;
+      position: relative;
+    }
+    .testimonial::before {
+      content: '“';
+      font-size: 3rem;
+      position: absolute;
+      top: -10px; left: -10px;
+      color: var(--gold);
+    }
+    /* FOOTER */
     footer {
-      background: #111;
+      background: var(--dark);
       color: white;
       text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
+      padding: 2rem 1rem;
     }
-
-    @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 1.8rem;
-      }
-
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-      }
+    .socials a {
+      color: white;
+      margin: 0 0.5rem;
+      font-size: 1.25rem;
+      transition: color var(--transition);
+    }
+    .socials a:hover {
+      color: var(--gold);
+    }
+    @media(max-width:768px){
+      .hamburger { display: block; }
+      nav .menu { display: none; flex-direction: column; gap:1rem; background: var(--dark-2); position: absolute; top:100%; left:0; width:100%; padding:1rem 2rem; }
+      nav .menu.open { display: flex; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Compro Oro Frascati</h1>
+    <div class="logo">Compro Oro Frascati</div>
     <p>Valutazioni Immediate, Pagamenti Immediati</p>
   </header>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="stima.html">Stima Oro</a>
-    <a href="chi-siamo.html">Chi Siamo</a>
-    <a href="come-funziona.html">Come Funziona</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contatti.html">Contatti</a>
+    <div class="logo" style="color:white; font-size:1.25rem;">COF</div>
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="stima.html">Stima Oro</a>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="come-funziona.html">Come Funziona</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
   </nav>
 
   <section class="hero">
-    <h2>Benvenuto su Compro Oro Frascati</h2>
-    <p>Scopri come vendere il tuo oro in modo sicuro, veloce e vantaggioso. Ti guidiamo passo dopo passo.</p>
+    <div class="hero-content">
+      <h1>Benvenuto su Compro Oro Frascati</h1>
+      <p>Scopri come vendere il tuo oro in modo sicuro, veloce e vantaggioso. Ti guidiamo passo dopo passo.</p>
+      <a href="stima.html" class="btn">Calcola la tua stima</a>
+    </div>
   </section>
 
-  <main>
-    <section>
-      <h3>Perché scegliere noi?</h3>
-      <p>Pagamenti immediati, trasparenza totale e stime in tempo reale. Siamo il tuo punto di riferimento a Frascati per la vendita dell’oro.</p>
-    </section>
-  </main>
+  <section class="section" id="perche">
+    <h2>Perché sceglierci</h2>
+    <div class="features">
+      <div class="feature-card">
+        <i class="fas fa-clock"></i>
+        <h3>Rapido</h3>
+        <p>Valutazioni immediate in pochi minuti.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-hand-holding-usd"></i>
+        <h3>Pagamenti Immediati</h3>
+        <p>Ricevi il pagamento sul posto, senza attese.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Trasparenza</h3>
+        <p>Processo chiaro e prezzi sempre aggiornati.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>In Centro</h3>
+        <p>Comodo punto vendita a Frascati.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials" id="testimonianze">
+    <h2>Cosa dicono i clienti</h2>
+    <div class="testimonial">Servizio eccezionale e prezzo imbattibile! – <strong>Maria R.</strong></div>
+    <div class="testimonial">Personale professionale e molto gentile. – <strong>Luca F.</strong></div>
+  </section>
 
   <footer>
-    &copy; 2025 Compro Oro Frascati - Tutti i diritti riservati
+    <p>&copy; 2025 Compro Oro Frascati</p>
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
   </footer>
+
+  <script>
+    // Toggle mobile menu
+    const ham = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+    ham.addEventListener('click', () => menu.classList.toggle('open'));
+  </script>
 
 </body>
 </html>
