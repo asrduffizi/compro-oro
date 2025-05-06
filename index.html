@@ -9,11 +9,11 @@
   <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
   <style>
     :root {
-      --primary: #bfa063;    /* oro più morbido */
-      --dark: #1a1a1a;       /* quasi nero */
-      --dark-2: #2a2a2a;     /* sfondo navbar */
-      --light: #fafafa;      /* sfondo generale */
-      --text: #333333;       /* testo principale */
+      --primary: #bfa063;
+      --dark: #1a1a1a;
+      --dark-2: #2a2a2a;
+      --light: #fafafa;
+      --text: #333333;
       --transition: 0.3s;
       --radius: 8px;
       --shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -48,10 +48,7 @@
       top: 0;
       z-index: 1000;
     }
-    nav .menu {
-      display: flex;
-      gap: 1.5rem;
-    }
+    nav .menu { display: flex; gap: 1.5rem; }
     nav a {
       color: #ffffff;
       text-decoration: none;
@@ -68,21 +65,12 @@
       background: var(--primary);
       transition: width var(--transition);
     }
-    nav a:hover {
-      color: var(--primary);
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    .hamburger {
-      display: none;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-    }
+    nav a:hover { color: var(--primary); }
+    nav a:hover::after { width: 100%; }
+    .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; }
     /* HERO PARALLAX */
     .hero {
-      background: url('https://images.unsplash.com/photo-1615393109582-b2f4c6a7cdcd?auto=format&fit=crop&w=1400&q=80') center/cover fixed no-repeat;
+      background: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1400&q=80') center/cover fixed no-repeat;
       padding: 6rem 2rem;
       text-align: center;
       color: #ffffff;
@@ -105,10 +93,7 @@
       margin-bottom: 1rem;
       letter-spacing: 1px;
     }
-    .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-    }
+    .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
     .hero .btn {
       background: var(--primary);
       color: var(--dark);
@@ -126,15 +111,8 @@
       box-shadow: var(--shadow);
     }
     /* SEZIONI */
-    .section {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .section h2 {
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      color: var(--dark);
-    }
+    .section { padding: 4rem 2rem; text-align: center; }
+    .section h2 { margin-bottom: 1.5rem; font-size: 2rem; color: var(--dark); }
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
@@ -157,9 +135,7 @@
       margin-bottom: 1rem;
     }
     /* TESTIMONIALS */
-    .testimonials {
-      background: var(--light);
-    }
+    .testimonials { background: var(--light); }
     .testimonial {
       max-width: 600px;
       margin: 0 auto 2rem;
@@ -191,9 +167,7 @@
       font-size: 1.25rem;
       transition: color var(--transition);
     }
-    .socials a:hover {
-      color: var(--primary);
-    }
+    .socials a:hover { color: var(--primary); }
     @media(max-width:768px){
       .hamburger { display: block; }
       nav .menu { display: none; flex-direction: column; gap:1rem; background: var(--dark-2); position: absolute; top:100%; left:0; width:100%; padding:1rem 2rem; }
@@ -249,34 +223,5 @@
         <p>Processo chiaro e prezzi sempre aggiornati.</p>
       </div>
       <div class="feature-card">
-        <i class="fas fa-map-marker-alt"></i>
-        <h3>In Centro</h3>
-        <p>Comodo punto vendita a Frascati.</p>
-      </div>
-    </div>
-  </section>
+        <i class
 
-  <section class="section testimonials" id="testimonianze">
-    <h2>Cosa dicono i clienti</h2>
-    <div class="testimonial">Servizio eccezionale e prezzo imbattibile! – <strong>Maria R.</strong></div>
-    <div class="testimonial">Personale professionale e molto gentile. – <strong>Luca F.</strong></div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Compro Oro Frascati</p>
-    <div class="socials">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </footer>
-
-  <script>
-    // Toggle mobile menu
-    const ham = document.querySelector('.hamburger');
-    const menu = document.querySelector('.menu');
-    ham.addEventListener('click', () => menu.classList.toggle('open'));
-  </script>
-
-</body>
-</html>
