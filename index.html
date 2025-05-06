@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compro Oro Frascati</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,6 +55,10 @@
       border: 0;
       margin-top: 1rem;
     }
+    canvas {
+      margin-top: 1rem;
+      max-width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -97,6 +102,34 @@
         const valore = peso * purezza * prezzo;
         document.getElementById("risultato").innerText = `Valore stimato: €${valore.toFixed(2)}`;
       }
+    </script>
+  </div>
+
+  <div class="container">
+    <h2>Andamento Prezzo Oro</h2>
+    <canvas id="goldChart"></canvas>
+    <script>
+      const ctx = document.getElementById('goldChart').getContext('2d');
+      const goldChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'],
+          datasets: [{
+            label: 'Prezzo €/g',
+            data: [59.2, 59.4, 59.1, 59.5, 60.0, 60.3, 60.1],
+            borderColor: '#d4af37',
+            backgroundColor: 'rgba(212, 175, 55, 0.2)',
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true },
+            title: { display: true, text: 'Ultima settimana (simulata)' }
+          }
+        }
+      });
     </script>
   </div>
 
