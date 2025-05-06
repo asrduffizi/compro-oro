@@ -2,21 +2,42 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Stima Oro - COF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stima Oro - Compro Oro Frascati</title>
+  <!-- Google Fonts e FontAwesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- header+nav identici a index.html -->
+  <!-- Header e Navbar comuni -->
+  <header>
+    <h1>Compro Oro Frascati</h1>
+    <p>Valutazioni Immediate, Pagamenti Immediati</p>
+  </header>
 
-  <section class="section hero">
+  <nav>
+    <div class="logo">COF</nobr></div>
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="stima.html" class="active">Stima Oro</a>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="come-funziona.html">Come Funziona</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contatti.html">Prenota Appuntamento</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="hero-content">
       <h2>Stima Gratuita del Tuo Oro</h2>
       <p>Inserisci carati e peso per avere un range di valore istantaneo.</p>
     </div>
   </section>
 
+  <!-- Form di Stima -->
   <main class="section">
     <div class="form-card">
       <form id="stima-form">
@@ -29,7 +50,7 @@
           <option value="14">14K</option>
         </select>
 
-        <label for="peso">Peso (g)</label>
+        <label for="peso">Peso (grammi)</label>
         <input type="number" id="peso" step="0.01" min="0.01" placeholder="es. 10.50" required>
 
         <button type="submit">Calcola Stima</button>
@@ -38,18 +59,28 @@
     </div>
   </main>
 
+  <!-- Footer -->
   <footer>&copy; 2025 Compro Oro Frascati</footer>
 
+  <!-- Script per mobile menu e calcolo -->
   <script>
-    const prezzi = {24:60,22:55,18:45,14:35};
-    document.getElementById('stima-form').addEventListener('submit', e=>{
+    // Toggle mobile menu
+    const ham = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+    ham.addEventListener('click', () => menu.classList.toggle('open'));
+
+    // Calcolo stima con range ±5%
+    const prezzi = {24:60, 22:55, 18:45, 14:35};
+    document.getElementById('stima-form').addEventListener('submit', e => {
       e.preventDefault();
       const c = +document.getElementById('carati').value;
       const p = parseFloat(document.getElementById('peso').value);
-      const base = prezzi[c]*p;
-      const min = (base*0.95).toFixed(2), max = (base*1.05).toFixed(2);
-      document.getElementById('risultato').innerText =
-        `Valore stimato: €${min} – €${max}`;
+      if (!c || p <= 0) return;
+      const base = prezzi[c] * p;
+      const min = (base * 0.95).toFixed(2);
+      const max = (base * 1.05).toFixed(2);
+      document.getElementById('risultato').innerHTML = 
+        `<span>Valore stimato: <strong>€${min}</strong> – <strong>€${max}</strong></span>`;
     });
   </script>
 </body>
