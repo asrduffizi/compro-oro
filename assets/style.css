@@ -1,4 +1,4 @@
-```css
+
 /* assets/style.css */
 :root {
   --gold: #FFD700;
@@ -116,4 +116,4 @@ nav a:hover::after,nav a.active::after{width:100%;}
   }
   nav .menu.open{display:flex;}
 }
-```
+
